@@ -2,7 +2,7 @@ mini-Routing
 ============
 
 ##Objectives
-The purpose of this Mini Project is to get you used to structuring your Angular and routing. These two things are some of the trickiest to wrap your head around so if something doesn't make sense as you're going through this, let us know and we'll come over to help you. 
+The purpose of this Mini Project is to get you used to structuring your Angular app and routing. These two things are some of the trickiest to wrap your head around so if something doesn't make sense as you're going through this, let us know and we'll come over to help you. 
 
 ###Step 1: Angular Skeleton 
 * Fork this repo, then clone your fork.
@@ -40,8 +40,8 @@ html, body{
 ```
 
 ###Step 2: Add Routing Skeleton
-* Right now you should have a very basic Angular application that has nothing more than an app.js (which created your 'miniRouting' module and a index.html page.
-* Now we're going to prep out HTML in order to start using ngRoute. 
+* Right now you should have a very basic Angular application that has nothing more than an app.js (which created your 'miniRouting' module) and a index.html page. Check your console to make sure there are no errors. If there are, debug.
+* Now we're going to prep our HTML in order to start using ngRoute. 
 * Before we use the ngRoute module to handle our routing, there are a few steps we need to take. First, we need to include ngRoute as a script in our HTML page. For your convenience, (http://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular-route.js). 
 * Once you've included ngRoute as a script, we need to inject ngRoute into our app as a dependency. Remember how we talked about how our app.js is the hub of our application and it's the only place we use ```angular.module('appName', [])``` with the empty array? The reason that empty array exists is because it's where we inject dependencies into our application. Head over to app.js and add 'ngRoute' as a dependency.
 * When you're done it should look something like this
@@ -144,15 +144,15 @@ app.service('productService', function(){
 Notice we have a side menu and then we have our ng-view that will change depending on our router (which we will specify in our next step.
 
 ###Step 5: Routing
-*Now that are ```<ng-view>``` is set up, let's head over to app.js and actually prepare our router.
+*Now that our ```<ng-view>``` is set up, let's head over to app.js and actually prepare our router.
 * You have the code below, but I want you to really try to not look at it until you've completed all of these next steps. I promise it's really not too tricky, just try your best and ask for  help if you get stuck.
-1) add a config property onto your app variable that takes in a anonymous function as it's only argument.
-2) inject ```$routeProvider``` into that anonymous function you just build
-3) Now we're going to set up our routes. Here is the criteria.
+* 1) add a config property onto your app variable that takes in a anonymous function as it's only argument.
+* 2) inject ```$routeProvider``` into that anonymous function you just build
+* 3) Now we're going to set up our routes. Here is the criteria.
      - When the user is at the index page ('/'), use ```homeTmpl.html``` as the templateUrl and use ```homeCtrl``` as the controller.
      - When the user is at the settings page ('/settings'), use ```settingsTmpl.html``` as the templateUrl and use ```settingsCtrl``` as the controller.
-    - When the user is at the products page ('/products/:id'), use ```productTmpl.html``` as the templateUrl and use ```productsCtrl``` as the controller. Notive that products has a ```/:id``` at the end of it. This is because we're going to tell our app which product the user is looking at based on which link they clicked. For example, if the user clicks on <a href="/products/shoes"/> Then in our controller ```$routeParams.id``` (id correlating with the /:id from earlier)is going to be 'shoes'. This is a little bit tricky, ask for help if you need it.
-    - If the user isn't at any of those URLs, redirect them to the index.
+  - When the user is at the products page ('/products/:id'), use ```productTmpl.html``` as the templateUrl and use ```productsCtrl``` as the controller. Notive that products has a ```/:id``` at the end of it. This is because we're going to tell our app which product the user is looking at based on which link they clicked. For example, if the user clicks on <a href="/products/shoes"/> Then in our controller ```$routeParams.id``` (id correlating with the /:id from earlier)is going to be 'shoes'. This is a little bit tricky, ask for help if you need it.
+  - If the user isn't at any of those URLs, redirect them to the index.
 * Here's what app.js should look like when you're done.
 ```javascript
 var app = angular.module('routingApp', ['ngRoute']);
@@ -229,7 +229,7 @@ app.controller('productsCtrl', function($scope, $routeParams, productService){
   }
 })
 ```
-* Now that are data is on the $scope of our productCtrl, head over to your productTmpl.html page and loop over $scope.productData and show the type, color, and size of the product.
+* Now that our data is on the $scope of our productCtrl, head over to your productTmpl.html page and loop over $scope.productData and show the type, color, and size of the product.
 * productTmpl.html should now look like this
 ```html
 <h1> Product Page </h1>
