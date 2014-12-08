@@ -7,11 +7,13 @@ The purpose of this Mini Project is to get you used to structuring your Angular 
 ###Step 1: Angular Skeleton 
 * Fork this repo, then clone your fork.
 * Create the basics of your Angular application. Your file structure should look like this
+```
   mini-routing
     index.html
     style.css
     js
       app.js
+```
 Remember to include ng-app in your application and call your module 'miniRouting'. Also, remember to include the Angular CDN as a script in your HTML along with app.js. Go ahead and create your 'miniRouting' module in your app.js file. Once you're done doing that add these styles to your style.css page.
 ```css
 html, body{
@@ -50,6 +52,7 @@ var app = angular.module('friendsList', ['ngRoute']);
 ###Step 3: Revamp Folder Structure
 * As we talked about in the lesson, Angular can dynamically change the template or controller based on what the URL is. For example, if we're at '/users' we can tell Angular to use the 'userController' controller as well as the 'userTemplate' html sheet (or view). 
 * As you can imagine your app starts to get really large as you have different routes. The Angular community has found that the best way to organize your application is by feature. For example, in our app we're going to have a home page, a products page, and a settings page. Go ahead and create those three folders. Once you've created those folder makes your file structure looks like this.
+```
   mini-routing
     index.html
     style.css
@@ -65,11 +68,12 @@ var app = angular.module('friendsList', ['ngRoute']);
       settings
         settingsCtrl.js
         settingsTmpl.html
+```
 Note that each feature has it's own controller and template (products also has it's own service). Once you're done making the folders and files above, be sure to include all your JavaScript files in your index.html page as scripts.
 
 ###Step 4: Revamp index.html
-* What's nice about routing is that we can have certain parts of the page be static (it never changes), while other parts of the page are dynamic (changes) based on the URL. What we're going to do is have a side menu that will always stay the same no matter what page the user is on. Then, we'll use <ng-view></ng-view> which will be where our router kicks in. 
-* Head over to your index.html page and inside the "<body>" above your "<script>" tags add this template
+* What's nice about routing is that we can have certain parts of the page be static (it never changes), while other parts of the page are dynamic (changes) based on the URL. What we're going to do is have a side menu that will always stay the same no matter what page the user is on. Then, we'll use ```<ng-view></ng-view>``` which will be where our router kicks in. 
+* Head over to your index.html page and inside the body above your script tags add this template
 ```html
     <div class="menu">
       <ul>
