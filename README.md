@@ -12,8 +12,7 @@ The purpose of this Mini Project is to get you used to structuring your Angular 
     style.css
     js
       app.js
-Remember to include ng-app in your application and call your module 'miniRouting'. Also, remember to include the Angular CDN as a script in your HTML along with app.js. Go ahead and create your 'miniRouting' module in your app.js file. 
-*Real quick add the following styles to your style.css page
+Remember to include ng-app in your application and call your module 'miniRouting'. Also, remember to include the Angular CDN as a script in your HTML along with app.js. Go ahead and create your 'miniRouting' module in your app.js file. Once you're done doing that add these styles to your style.css page.
 ```css
 html, body{
   margin: 0;
@@ -70,7 +69,7 @@ Note that each feature has it's own controller and template (products also has i
 
 ###Step 4: Revamp index.html
 * What's nice about routing is that we can have certain parts of the page be static (it never changes), while other parts of the page are dynamic (changes) based on the URL. What we're going to do is have a side menu that will always stay the same no matter what page the user is on. Then, we'll use <ng-view></ng-view> which will be where our router kicks in. 
-* Head over to your index.html page and inside the <body> above your <script> tags add this template
+* Head over to your index.html page and inside the "<body>" above your "<script>" tags add this template
 ```html
     <div class="menu">
       <ul>
