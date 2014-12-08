@@ -43,7 +43,7 @@ html, body{
 * Right now you should have a very basic Angular application that has nothing more than an app.js (which created your 'miniRouting' module and a index.html page.
 * Now we're going to prep out HTML in order to start using ngRoute. 
 * Before we use the ngRoute module to handle our routing, there are a few steps we need to take. First, we need to include ngRoute as a script in our HTML page. For your convenience, (http://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular-route.js). 
-* Once you've included ngRoute as a script, we need to inject ngRoute into our app as a dependency. Remember how we talked about how our app.js is the hub of our application and it's the only place we use 'angular.module('appName', [])' with the empty array? The reason that empty array exists is because it's where we inject dependencies into our application. Head over to app.js and add 'ngRoute' as a dependency.
+* Once you've included ngRoute as a script, we need to inject ngRoute into our app as a dependency. Remember how we talked about how our app.js is the hub of our application and it's the only place we use ```angular.module('appName', [])``` with the empty array? The reason that empty array exists is because it's where we inject dependencies into our application. Head over to app.js and add 'ngRoute' as a dependency.
 * When you're done it should look something like this
 ```javascript
 var app = angular.module('friendsList', ['ngRoute']);
@@ -69,7 +69,55 @@ var app = angular.module('friendsList', ['ngRoute']);
         settingsCtrl.js
         settingsTmpl.html
 ```
-Note that each feature has it's own controller and template (products also has it's own service). Once you're done making the folders and files above, be sure to include all your JavaScript files in your index.html page as scripts.
+* Note that each feature has it's own controller and template (products also has it's own service). Once you're done making the folders and files above, be sure to include all your JavaScript files in your index.html page as scripts.
+* Head over to productService.js and add this to the file
+```javascript
+var app = angular.module('routingApp');
+
+app.service('productService', function(){
+  this.shoeData = [
+    {
+      type: 'Nike',
+      color: 'Red',
+      size: 12
+    },
+    {
+      type: 'Reebok',
+      color: 'Blue',
+      size: 9
+    },
+    {
+      type: 'Adidas',
+      color: 'Yellow',
+      size: 6
+    },
+    {
+      type: 'Puma',
+      color: 'Green',
+      size: 7
+    }
+  ];
+
+  this.sockData = [
+    {
+      type: 'Stance',
+      color: 'Red',
+      size: 'S'
+    },
+    {
+      type: 'Nike',
+      color: 'White',
+      size: 'M'
+    },
+    {
+      type: 'Reebok',
+      color: 'Green',
+      size: 'L'
+    },
+  ]
+});
+```
+* Note it's just filler data that we're going to use later.
 
 ###Step 4: Revamp index.html
 * What's nice about routing is that we can have certain parts of the page be static (it never changes), while other parts of the page are dynamic (changes) based on the URL. What we're going to do is have a side menu that will always stay the same no matter what page the user is on. Then, we'll use ```<ng-view></ng-view>``` which will be where our router kicks in. 
@@ -96,3 +144,98 @@ Note that each feature has it's own controller and template (products also has i
 Notice we have a side menu and then we have our ng-view that will change depending on our router (which we will specify in our next step.
 
 ###Step 5: Routing
+*Now that are ```<ng-view>``` is set up, let's head over to app.js and actually prepare our router.
+* You have the code below, but I want you to really try to not look at it until you've completed all of these next steps. I promise it's really not too tricky, just try your best and ask for  help if you get stuck.
+1) add a config property onto your app variable that takes in a anonymous function as it's only argument.
+2) inject ```$routeProvider``` into that anonymous function you just build
+3) Now we're going to set up our routes. Here is the criteria.
+     - When the user is at the index page ('/'), use ```homeTmpl.html``` as the templateUrl and use ```homeCtrl``` as the controller.
+     - When the user is at the settings page ('/settings'), use ```settingsTmpl.html``` as the templateUrl and use ```settingsCtrl``` as the controller.
+    - When the user is at the products page ('/products/:id'), use ```productTmpl.html``` as the templateUrl and use ```productsCtrl``` as the controller. Notive that products has a ```/:id``` at the end of it. This is because we're going to tell our app which product the user is looking at based on which link they clicked. For example, if the user clicks on <a href="/products/shoes"/> Then in our controller ```$routeParams.id``` (id correlating with the /:id from earlier)is going to be 'shoes'. This is a little bit tricky, ask for help if you need it.
+    - If the user isn't at any of those URLs, redirect them to the index.
+* Here's what app.js should look like when you're done.
+```javascript
+var app = angular.module('routingApp', ['ngRoute']);
+
+app.config(function($routeProvider){
+  $routeProvider
+    .when('/', {
+      templateUrl: 'js/home/homeTmpl.html',
+      controller: 'homeCtrl'
+    })
+    .when('/products/:id', {
+      templateUrl: 'js/products/productTmpl.html',
+      controller: 'productsCtrl'
+    })
+    .when('/settings', {
+      templateUrl: 'js/settings/settingsTmpl.html',
+      controller: 'settingsCtrl'
+    })
+    .otherwise({
+      redirectTo: '/'
+    })
+});
+```
+###Step 5: Adding to Template
+* In order for us to know if our routes are working, we need to go and edit all of our templates to show some sort of confirmation that we're on a certain page. Make the following changes
+* settingsTmpl.html should look like this
+```html
+<h1> Settings Page </h1>
+<p> This is where the user would change their settings </p>
+```
+* homeTmpl.html should look like this
+```html
+<h1> Amazonia </h1>
+<h3> Welcome to Amazonia </h3>
+```
+* productTmpl.html should look like this
+```html
+<h1> Product Page </h1>
+<div> We're going to use this div to loop over our data later on</div>
+```
+* Test that everything is working by clicking on a few of the links and seeing if the templates change based on which link you clicked on. If it's not working, first check your console and see if there are any errors. Try to debug, if you debug for 5 minutes and are still stuck, ask for help.
+* 
+
+###Step 6: Fixing Product Pages
+* The last thing we have to do is show certain product data depending on which page the user is it. For example, if the user is on the shoes page, we want to show them the shoes data. If they're on the socks page, we want to show them the socks data. Remember that in our index.html page our menu looks like this. 
+```html
+    <div class="menu">
+      <ul>
+        <li><a href="#/"> Home </a></li>
+        <li>
+          Products
+          <ul>
+            <li><a href="#/products/shoes">Shoes</a></li>
+            <li><a href="#/products/socks">Socks</a></li>
+          </ul>
+        </li>
+        <li><a href="#/settings"> Settings </a></li>
+      </ul>
+    </div>
+```
+* So we now that in our controller, $routeParams.id (because of :/id in our router) will be either 'socks' or 'shoes' depending on which page the user is in. With this knowledge, we can add a simple if statement to check which product page the user is on.
+* In your products controller first inject ```$routeParams``` and ```productService``` into your controller. 
+* Now write an if statement, if ```$routeParams.id``` is equal to 'shoes', then ```$scope.productData``` should be set to ```productService.shoeData```. If ```$routeParams.id``` is equal to 'socks', then ```$scope.productData``` should be set to ```productService.sockData```.
+* Now we know we have data on the scope that is equal to certain product data depending on which product the user is looking at.
+* Your productCtrl.js should now look like this. (Please don't just copy and paste. Really try to understand what's going on).
+```javascript
+var app = angular.module('routingApp');
+
+app.controller('productsCtrl', function($scope, $routeParams, productService){
+  if($routeParams.id === 'shoes'){
+    $scope.productData = productService.shoeData;
+  } else if ($routeParams.id === 'socks'){
+    $scope.productData = productService.sockData;
+  }
+})
+```
+* Now that are data is on the $scope of our productCtrl, head over to your productTmpl.html page and loop over $scope.productData and show the type, color, and size of the product.
+* productTmpl.html should now look like this
+```html
+<h1> Product Page </h1>
+<div ng-repeat="item in productData">
+    Type: {{item.type}} </br />
+    Color: {{item.color}} </br />
+    Size: {{item.size}} </br />
+</div>
+```
