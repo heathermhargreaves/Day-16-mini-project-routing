@@ -64,7 +64,7 @@ var app = angular.module('friendsList', ['ngRoute']);
       products
         productsCtrl.js
         productsService.js
-        productTmpl.tmpl
+        productTmpl.html
       settings
         settingsCtrl.js
         settingsTmpl.html
@@ -151,7 +151,7 @@ Notice we have a side menu and then we have our ng-view that will change dependi
 * 3) Now we're going to set up our routes. Here is the criteria.
      - When the user is at the index page ('/'), use ```homeTmpl.html``` as the templateUrl and use ```homeCtrl``` as the controller.
      - When the user is at the settings page ('/settings'), use ```settingsTmpl.html``` as the templateUrl and use ```settingsCtrl``` as the controller.
-  - When the user is at the products page ('/products/:id'), use ```productTmpl.html``` as the templateUrl and use ```productsCtrl``` as the controller. Notive that products has a ```/:id``` at the end of it. This is because we're going to tell our app which product the user is looking at based on which link they clicked. For example, if the user clicks on <a href="/products/shoes"/> Then in our controller ```$routeParams.id``` (id correlating with the /:id from earlier)is going to be 'shoes'. This is a little bit tricky, ask for help if you need it.
+  - When the user is at the products page ('/products/:id'), use ```productTmpl.html``` as the templateUrl and use ```productsCtrl``` as the controller. Notice that products has a ```/:id``` at the end of it. This is because we're going to tell our app which product the user is looking at based on which link they clicked. For example, if the user clicks on <a href="/products/shoes"/> Then in our controller ```$routeParams.id``` (id correlating with the /:id from earlier)is going to be 'shoes'. This is a little bit tricky, ask for help if you need it.
   - If the user isn't at any of those URLs, redirect them to the index.
 * Here's what app.js should look like when you're done.
 ```javascript
