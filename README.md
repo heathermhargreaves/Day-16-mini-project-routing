@@ -42,7 +42,7 @@ html, body{
 ###Step 2: Add Routing Skeleton
 * Right now you should have a very basic Angular application that has nothing more than an app.js (which created your 'miniRouting' module) and a index.html page. Check your console to make sure there are no errors. If there are, debug.
 * Now we're going to prep our HTML in order to start using ngRoute. 
-* Before we use the ngRoute module to handle our routing, there are a few steps we need to take. First, we need to include ngRoute as a script in our HTML page. For your convenience, (http://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular-route.js). 
+* Before we use the ngRoute module to handle our routing, there are a few steps we need to take. First, we need to include ngRoute as a script in our HTML page. [For your convenience](http://cdnjs.com/libraries/angular.js/). 
 * Once you've included ngRoute as a script, we need to inject ngRoute into our app as a dependency. Remember how we talked about how our app.js is the hub of our application and it's the only place we use ```angular.module('appName', [])``` with the empty array? The reason that empty array exists is because it's where we inject dependencies into our application. Head over to app.js and add 'ngRoute' as a dependency.
 * When you're done it should look something like this
 ```javascript
