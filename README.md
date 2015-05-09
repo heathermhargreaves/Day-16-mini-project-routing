@@ -72,7 +72,7 @@ var app = angular.module('friendsList', ['ngRoute']);
 * Note that each feature has it's own controller and template (products also has it's own service). Once you're done making the folders and files above, be sure to include all your JavaScript files in your index.html page as scripts.
 * Head over to productService.js and add this to the file
 ```javascript
-var app = angular.module('routingApp');
+var app = angular.module('miniRouting');
 
 app.service('productService', function(){
   this.shoeData = [
