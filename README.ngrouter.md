@@ -240,3 +240,4 @@ app.controller('productsCtrl', function($scope, $routeParams, productService){
 </div>
 ```
 *You will notice that you still have some errors when you click on home or services. Go ahead and add the JavaScript necessary to the controllers for these pages be creative and add your own function.
+```
