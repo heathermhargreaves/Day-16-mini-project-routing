@@ -213,7 +213,7 @@ app.config(function($routeProvider){
       </ul>
     </div>
 ```
-* So we know that in our controller, $routeParams.id (because of :/id in our router) will be either 'socks' or 'shoes' depending on which page the user is in. With this knowledge, we can add a simple 'if' statement to check which product page the user is on.
+* So we know that in our controller, $routeParams.id (because of /:id in our router) will be either 'socks' or 'shoes' depending on which page the user is in. With this knowledge, we can add a simple 'if' statement to check which product page the user is on.
 * In your products controller, first inject ```$routeParams``` and ```productService``` into your controller. 
 * Now write an if statement, if ```$routeParams.id``` is equal to 'shoes', then ```$scope.productData``` should be set to ```productService.shoeData```. If ```$routeParams.id``` is equal to 'socks', then ```$scope.productData``` should be set to ```productService.sockData```.
 * Now we know that we have data on the scope equal to certain product data, depending on which product the user is looking at.
@@ -238,4 +238,6 @@ app.controller('productsCtrl', function($scope, $routeParams, productService){
     Color: {{item.color}} </br />
     Size: {{item.size}} </br />
 </div>
+```
+*You will notice that you still have some errors when you click on home or services. Go ahead and add the JavaScript necessary to the controllers for these pages be creative and add your own function.
 ```

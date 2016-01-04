@@ -114,7 +114,7 @@ app.service('productService', function(){
       color: 'Green',
       size: 'L'
     },
-  ]
+  ];
 });
 ```
 * Note: it's just filler data that we're going to use later.
@@ -205,7 +205,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 * 
 
 ###Step 7: Fixing Product Pages
-* The last thing we have to do is show certain product data depending on which page the user is it. For example, if the user is on the shoes page, we want to show them the shoes data. If they're on the socks page, we want to show them the socks data. Remember that in our index.html page our menu looks like this: 
+* The last thing we have to do is show certain product data depending on which page the user is on. For example, if the user is on the shoes page, we want to show them the shoes data. If they're on the socks page, we want to show them the socks data. Remember that in our index.html page our menu looks like this: 
 ```html
     <div class="menu">
         <ul>
