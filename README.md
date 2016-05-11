@@ -46,7 +46,7 @@ html, body {
 * Once you've included UI Router as a script, we need to inject UI Router into our app as a dependency. Remember how we talked about how our app.js is the hub of our application and it's the only place we use ```angular.module('appName', [])``` with the empty array? The reason that empty array exists is because it's where we inject dependencies into our application. Head over to app.js and add 'ui.router' as a dependency.
 * When you're done it should look something like this
 ```javascript
-var app = angular.module('miniRouting', ['ui.router']);
+angular.module('miniRouting', ['ui.router']);
 ```
 
 ###Step 3: Revamp Folder Structure
@@ -72,9 +72,7 @@ var app = angular.module('miniRouting', ['ui.router']);
 * Note that each feature has it's own controller and template (products also has it's own service). Once you're done making the folders and files above, be sure to include all your JAVASCRIPT files in your index.html page as scripts. (Note that html files do not need to be injected. We will inject them as templates later on.)
 * Head over to productService.js and add this to the file:
 ```javascript
-var app = angular.module('miniRouting');
-
-app.service('productService', function(){
+angular.module('miniRouting').service('productService', function(){
   this.shoeData = [
     {
       type: 'Nike',
@@ -159,9 +157,7 @@ Notice that we have a side menu and then we have our `<div ui-view></div>` that 
 * Here's what app.js should look like when you're done.
 
 ```javascript
-var app = angular.module('miniRouting', ['ui.router']);
-
-app.config(function ($stateProvider, $urlRouterProvider) {
+angular.module('miniRouting', ['ui.router']).config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('home', {
@@ -227,9 +223,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 * Now we know that we have data on the scope equal to certain product data, depending on which product the user is looking at.
 * Your productCtrl.js should now look like this: (Note: Please don't just copy and paste. Try to really understand what's going on.)
 ```javascript
-var app = angular.module('miniRouting');
-
-app.controller('productsCtrl', function ($scope, $stateParams, productService) {
+angular.module('miniRouting').controller('productsCtrl', function ($scope, $stateParams, productService) {
     if ($stateParams.id === 'shoes') {
         $scope.productData = productService.shoeData;
     }
